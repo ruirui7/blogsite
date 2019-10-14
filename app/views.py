@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.urls import reverse, reverse_lazy
+from django.views import generic
+from .models import Category
 
-# Create your views here.
+class IndexView(generic.ListView):
+	template_name = 'app/index.html'
+	model = Category
