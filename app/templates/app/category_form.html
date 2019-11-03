@@ -1,0 +1,14 @@
+{% extends 'app/base.html' %}
+{% block content %}
+<head>
+	<title>掲示板</title>
+</head>
+<body>ここはメインメニュー
+<form action="" method="POST">	
+    {% csrf_token %}
+	{{ form.as_p }}
+	<button type='submit' class='btn btn-outline-primary'>{{ object|yesno:'更新,作成' }}</button><br><br>
+	<td><a href="{% url 'app:index'%}" class='btn btn-outline-primary'>戻る</a>　</td><br>
+</form><br>
+</body><br>
+{% endblock %}

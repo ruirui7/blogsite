@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>削除フォーム</title>
+</head>
+<body>ここは削除フォーム
+<p>'{{ object.comment }}'を削除しますか？</p>
+<form action="" method="POST">	
+	{% csrf_token %}
+	<button type='submit' class='submit　delete'>削除する</button>
+</form>
+    <p><td><a href="{% url 'app:index' %}">戻る</a>　</td>
+</body>
+</html>

@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+
+    <script type="text/javascript" src="/admin/jsi18n/"></script>
+    <script type="text/javascript" src="/static/admin/js/core.js"></script>
+    <script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+    <script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+    <script type="text/javascript" src="/static/admin/js/actions.js"></script>
+    <script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+    <script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+    <script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+    <script type="text/javascript" src="/static/admin/js/calendar.js"></script>
+    <script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
+    
+    {% block head %}
+
+    {% endblock %} 
+
+    
+    <title>{% block title %}{% endblock %}</title>
+    
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    -->
+     
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/style.css' %}" />
+
+    </head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark width=200">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'app:index' %}">掲示板</a>
+      </li>
+      <li class="na-item">
+        <a class="nav-link" href="{% url 'app:index' %}">　　　メインメニュー　　</a>
+
+        {% if user.is_authenticated %}
+          <li class='nav-item'>
+            <span class='navbar-text'>{{ user }} - </span>
+          </li>
+          <li class='nav-item'>
+            <a href='{% url "logout" %}' class='logout nav-link'>　ログアウト </a>
+          </li>
+        {% else %}
+          <li class='nav-item'>
+            <a href='{% url "login" %}' class='login nav-link'>　ログイン</a>
+          </li>
+        {% endif %}
+        <li class='nav-item'>
+          <a href='{%  url "accounts:signup" %}' class='signup nav-link'>　　　　　　　　新規作成</a>
+        </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-3">
+
+    {% block content %}
+
+    {% endblock %}
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+<div class="container">
+  {% block extrajs %}
+
+
+  {% endblock %}
+</div>
+    <div>
+      <footer class="footer">
+      <br>
+      <h5><a href='{% url "app:index" %}'>　トップページ</a></h5><br>
+      <h6><a href='{% url "app:index" %}'>　 このブログについて</a></h6>
+      <h6><a href='{% url "app:index" %}'>　 おすすめのブログ</a></h6><br>
+      <h6><p align="right">ryu's system 2019　</p></h6>
+
+      </footer>
+    </div>
+</body>
+
+</html>

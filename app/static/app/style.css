@@ -1,0 +1,120 @@
+.box {
+  float: right;
+  width: 200px;
+  height: 200px;
+  background: #2196F3;
+  animation: rotation 4s ease 0s 1 alternate none running;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+
+  
+}
+@keyframes rotation {
+  0% {
+    transform: scale(.3);
+  }
+
+  50% {
+    transform: scale(.6) rotate(-45deg);
+    background: red;
+  }
+
+  100% {
+    transform: scale(1) rotate(180deg);
+    background: yellow;
+
+  }
+}
+
+
+li a {
+    color: green;
+}
+/*li a {
+    color: green;
+}
+body {
+    background: white url("images/main.jpg") no-repeat;
+}*/
+
+.jumbotron {
+  background-image: url("main.jpg");
+  background-size: cover;
+  background-position: center 60%;
+}
+
+}
+.loop_wrap {
+  display: flex;
+  width: 100vw;
+  height: 300px;
+  overflow: hidden;
+}
+
+.loop_wrap img {
+  width: auto;
+  height: 100%;
+}
+@keyframes loop {
+  0% {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes loop2 {
+  0% {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-200%);
+  }
+}
+.loop_wrap img:first-child {
+  animation: loop 50s -25s linear infinite;
+}
+
+.loop_wrap img:last-child {
+  animation: loop2 50s linear infinite;
+}
+
+.element {
+  animation: 2s linear 1s fadein;
+}
+
+
+
+.footer {
+
+    clear: both;
+
+    width: 100%;
+
+    min-width: 200px;
+
+    /*height: 330px;*/
+
+    position: relative;
+
+    background: black;
+
+    color: yellow;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 40vh;
+    margin-top: auto;
+
+}
+
+.footer a {
+
+    text-decoration:none;
+
+    color: white;
+
+
+}
+

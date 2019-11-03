@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>掲示板</title>
+</head>
+<body>ここはメインメニュー
+<form action="" method="POST">	
+    {% for i in title %}
+      <tr>
+        <p><td><a href="{% url 'app:thread' %}">{{ i.title }}　</a></td>
+        <td>{{ i.created_at }}　</td>
+        <td>{{ i.updated_at }}　</td></p>
+      </tr>
+    {% endfor %}
+</form>
+</body>
+</html>

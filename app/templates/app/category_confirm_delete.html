@@ -1,0 +1,15 @@
+{% extends 'app/base.html' %}
+{% block content %}
+
+<head>
+	<title>削除フォーム</title>
+</head>
+<body>ここは削除フォーム
+<p>'{{ object.title }}'を削除しますか？</p>
+<form action="" method="POST">	
+	{% csrf_token %}
+	<button type='submit' class='submit　delete btn btn-outline-primary'>削除する</button>
+</form><br>
+    <p><td><a href="{% url 'app:detail' category.pk %}">戻る</a>　</td>
+</body><br>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% load static %}
+
+
+
+<head>
+	<title>掲示板</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'app/style.css' %}">
+</head>
+
+
+
+↓↓↓↓↓↓↓
+
+
+<div class="loop_wrap">
+  <img src="{{ STATIC_URL }}app/main.jpg"><img src="{{ STATIC_URL }}app/main.jpg">
+</div>
+
+
+
+↓↓↓↓↓↓↓
+
+↑↑↑↑↑↑↑<br><br>
+<!-- <div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">幅一杯にジャンボトロン</h1>
+    <p class="lead">これは親要素の全ての横方向の空白一杯に広がるように設定変更されたジャンボトロンです。</p>
+  </div>
+</div>
+<div class="container">
+  ...
+</div> -->
+
+
+
+<div class="col-md-13">
+	<img src="https://cdn.pixabay.com/photo/2019/10/20/06/44/manipulation-4562836_1280.jpg" alt=" 代替テキスト "width=900 height=500 />
+<!--     <img src="https://pics.prcm.jp/d7c321154eb8e/81781683/png/81781683.png" alt=" 代替テキスト "width=900 height=400 /> -->
+</div>
+<body>ここはメインメニュー
+<div class="row">
+	<div class="col-md-5">
+		<form action="" method="POST">
+		<div class="table-responsive">
+			<table class="table table-striped table-hover">
+				<thead class="thead-dark">
+					<tr>
+					<th>スレッド</th>
+					</tr>
+				</thead>
+				<tbody>
+			    {% for i in object_list %}
+			      <tr>
+			        <p><td width="80" height="70"><a href='{% url "app:detail" i.pk %}'>{{ i.title }}　　ジャンル：【{{ i.genre }}】　<br>更新日：【{{ i.updated_at }}】　</td></a></p>
+			      </tr>
+			    {% endfor %}
+				</tbody>
+			</table>
+		</div>
+			<p><a href='{% url "app:create" %}' class='btn btn-outline-primary'>作成</a></p>
+		</form>
+	</div>
+</div>
+
+{% endblock %}

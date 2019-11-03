@@ -1,0 +1,26 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<br><h2>ログイン</h2><br>
+<section class='common-form'>
+	{% if form.errors %}
+		<p class='error-msg'>Your username and password didn't match. Please again.</p>
+	{% endif %}
+	{% if next %}
+		{% if user.is_authenticated %}
+			<p class='error-msg'>Your account doesn't have access to this pa To proceed,
+			Plese login with an account that has access</p>
+		{% else %}
+			<p class='error-msg'>Plese login to see this page.</p>
+		{% endif %}
+	{% endif %}
+
+	<form action='{% url "login" %}' method='post'>
+		{% csrf_token %}
+		<input type='hidden' name='next' value='{{ next }}'/>
+		{{ form.as_p }}
+		<button type='submit' class="btn btn-outline-primary">ログイン</button><br>
+		<div class="box"></div>
+	</form>
+</section>
+{% endblock %}

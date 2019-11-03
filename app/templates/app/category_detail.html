@@ -1,0 +1,63 @@
+{% extends 'app/base.html' %}
+{% block content %}
+<head>
+	<title>スレッド</title>
+</head>
+<br>
+<!-- 問題点はログインしていないと投稿ができない件 -->
+
+
+<h4>Your username and password didn't match. Please again.</h4>
+<h4>Your username and password didn't match. Please again.</h4>
+<h4>Your username and password didn't match. Please again.</h4>
+<h4>Your username and password didn't match. Please again.</h4>
+<h4>Your username and password didn't match. Please again.</h4>
+<h4>Your username and password didn't match. Please again.</h4>
+<br><br>
+
+
+
+
+<!-- <div class="col-md-13">
+    {# include 'app/~~~.html' #}%
+</div> ←urlを埋め込み-->
+<div class="row">
+	<div class="col-md-4">
+		<form  method="POST">
+			{{ form }}
+			{% csrf_token %}
+		<br><button type='submit' class='btn btn-outline-primary'>投稿</button>
+		</form><br>
+	</div>
+	<div class="col-md-8">
+		なにかいれよう
+	</div>
+</div>
+	<div class="table-responsive">
+		<table class="table table-striped table-hover">
+			<thead class="thead-dark">
+			<tr>
+			<th>1</th><th>2</th><th>3</th>
+			</tr>
+			</thead>
+			<tbody>
+			{% for i in comments %}
+		        <tr>
+		        	<td>投稿者：{{i.author}}</td>
+		        	<!-- <td>題名：{{ i.mes}}　　</td> -->
+		        	<td>コメント：{{ i }}　　</td>
+		        	<td>更新：{{ i.created }}　</td>	
+	        	</tr>
+		    {% endfor %}
+			</tbody>
+	    </table>
+	</div>
+<br>
+
+<form action="" method="POST">
+	<p><td><a href="{% url 'app:update' category.pk %}" class='btn btn-outline-primary'>編集</a>　</td></p>
+	<p><td><a href="{% url 'app:delete' object.pk %}" class='btn btn-outline-primary'>削除</a>　</td></p>
+</form>
+    <p><td><a href="{% url 'app:index' %}" class='btn btn-outline-primary'>戻る</a>　</td></p>
+<br>
+{% endblock %}

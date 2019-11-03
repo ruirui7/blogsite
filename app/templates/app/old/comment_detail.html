@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>スレッド</title>
+</head>
+<body>
+
+<form action="" method="POST">
+	{% for i in object_list %}
+      <tr>
+        <p><td>{{ i.title }}　　</td></p>
+      </tr>
+    {% endfor %}
+   	<br>
+	<br>
+	<p><td><a href="{% url 'app:update' comment.pk %}">編集</a>　</td></p>
+	<p><td><a href="{% url 'app:delete' object.pk %}">削除</a>　</td></p>
+    <p><td><a href="{% url 'app:index' %}">戻る</a>　</td></p>
+</form>
+</body>
+</html>

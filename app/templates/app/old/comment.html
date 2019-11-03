@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>スレッド</title>
+</head>
+<body>
+		ここはスレッドZ
+
+<!-- <div class="col-md-13">
+    {# include 'app/~~~.html' #}%
+</div> ←urlを埋め込み-->
+	<form action="" method="get">
+	{% for i in object_list %}
+      <tr>
+        <p><td>{{ i.comment }}　更新日：【{{ i.updated }}】　</td></p>
+      </tr>
+    {% endfor %}
+</form>
+<form action="" method="POST">
+<!-- 	<p><td><a href="{ url 'app:comecreate' object.pk}">投稿</a>　</td></p>
+ --><!-- 	<p><td><a href="{ url 'app:comedelete' comment.pk }">削除</a>　</td></p>
+ -->    <p><td><a href="{% url 'app:index' %}">戻る</a>　</td></p>
+</form>
+</body>
+</html>
