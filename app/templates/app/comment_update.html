@@ -2,12 +2,12 @@
 {% block content %}
 <h1>{{ object|yesno:'更新,作成' }}</h1>
 <br>
-<body>カテゴリーフォーム
+<body>ここはメインメニュー
 <form action="" method="POST">	
     {% csrf_token %}
 	{{ form.as_p }}<br><br>
 	<button type='submit' class='btn btn-outline-primary'>{{ object|yesno:'更新,作成' }}</button><br><br>
+	<td><a href="{% url 'app:index'%}" class='btn btn-outline-primary'>戻る</a>　</td><br>
 </form><br>
-	<td><a href="{{request.META.HTTP_REFERER}}" class='btn btn-outline-primary'>戻る</a>　</td><br>
 </body><br>
 {% endblock %}

@@ -30,16 +30,31 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+
 INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'app.apps.AppConfig',
+    'clientapp.apps.ClientappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'sslserver'#HTTPS
 ]
+
+#pip install django-sslserver　HTTPS有効化
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+#コマンド↓
+# openssl genrsa -out foobar.key 2048
+# openssl req -new -key foobar.key -out foobar.csr
+# openssl x509 -req -days 365 -in foobar.csr -signkey foobar.key -out foobar.crt
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -122,3 +137,23 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+#pip install django-debug-toolbar　デバッガ―ツール
+
+# if DEBUG:
+#     def show_toolbar(request):
+#         return True
+
+
+#     INSTALLED_APPS += (
+#         'debug_toolbar',
+#     )
+#     MIDDLEWARE += (
+#         'debug_toolbar.middleware.DebugToolbarMiddleware',
+#     )
+#     # ここで表示する内容を設定できます↓↓基本的にはこれでok
+#     DEBUG_TOOLBAR_CONFIG = {
+#         'SHOW_TOOLBAR_CALLBACK': show_toolbar,
+#     }
+

@@ -3,10 +3,11 @@
 <h1>{{ object }}</h1><br>
 <body>ここは削除フォーム
 <form action="" method="POST">
-<p>'{{ object.title }}'を削除しますか？</p>	
+<p>'{{ object.name }}'を削除しますか？</p>	
 	{% csrf_token %}
 	<button type='submit' class='submit　delete btn btn-outline-primary'>削除する</button><br><br>
-    <td><a href="{% url 'app:detail' category.pk %}" class='btn btn-outline-primary'>戻る</a>　</td><br><br>
+    <a href="{{request.META.HTTP_REFERER}}" class='btn btn-outline-primary'>戻る</a>
+</td><br><br>
 </form><br>
 </body><br>
 {% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'app/base.html' %}
+{% block content %}
+{% for x in client %}
+    <h1>
+    	顧客名：【{{ x.name }}】　　
+	</h1>
+{% endfor %}
+<br>
+<div class="row">
+	<div class="col-md-10">
+	    {% for i in client %}
+	    	<div class="box11">
+		    <p>	
+		    <h4>顧客名：{{ i.name }}</h4><br>
+		    <h4>会社名：{{ i.org }}</h4>
+	    	<h4>人数規模：{{ i.scale }}</h4>
+	    	<h4>案件数：{{ i.proposals }}</h4>
+	    	<h4>案件傾向：{{ i.mat_trend }}</h4>
+	    	<h4>案件総数：{{ i.mat_total }}</h4>
+	    	<h4>優先度：{{ i.priority }}</h4>
+	    	<h4>詳細メモ：{{ i.memo }}</h4>
+		    <h4>更新日：{{ i.updated_at }}</h4>
+		    </p>
+		    </div>
+		    {% if user.is_authenticated %}
+			    <form action="" method="POST">
+					<p><a href='{% url "clientapp:client_update" i.pk %}' class='btn btn-outline-primary'>　顧客内容変更　</a></p>
+					<p><a href='{% url "clientapp:client_delete" i.pk %}' class='btn btn-outline-primary'>　顧客削除　</a></p>
+				</form>
+		    {% else %}
+		    	<p><h6 class="btn-sticky">ログインしてからの顧客を作成をして下さい</h6>
+		        <br><a href='{% url "login" %}' class='login nav-link btn btn-outline-primary'>ログイン</a></p>
+		    {% endif %}
+	    {% endfor %}
+	    <br><br>
+	</div>
+</div>
+<p><a href='{% url "clientapp:index" %}' class='btn btn-outline-primary'>戻る</a></p>
+<br>
+{% endblock %}

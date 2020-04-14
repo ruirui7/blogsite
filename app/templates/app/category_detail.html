@@ -1,63 +1,60 @@
 {% extends 'app/base.html' %}
 {% block content %}
-<head>
-	<title>スレッド</title>
-</head>
-<br>
-<!-- 問題点はログインしていないと投稿ができない件 -->
-
-
-<h4>Your username and password didn't match. Please again.</h4>
-<h4>Your username and password didn't match. Please again.</h4>
-<h4>Your username and password didn't match. Please again.</h4>
-<h4>Your username and password didn't match. Please again.</h4>
-<h4>Your username and password didn't match. Please again.</h4>
-<h4>Your username and password didn't match. Please again.</h4>
-<br><br>
-
-
-
-
-<!-- <div class="col-md-13">
-    {# include 'app/~~~.html' #}%
-</div> ←urlを埋め込み-->
+<h1>社員名：【{{ category }}】</h1><br>
+<h5 class="btn-sticky">案件を作成する　　　</h5>
 <div class="row">
 	<div class="col-md-4">
 		<form  method="POST">
 			{{ form }}
 			{% csrf_token %}
-		<br><button type='submit' class='btn btn-outline-primary'>投稿</button>
+        	{% if user.is_authenticated %}
+				<br><button type='submit' class='btn btn-outline-primary'>案件を作成する</button>
+		    {% else %}
+		    	<p><h6 class="btn-sticky">ログインしてから案件の作成をして下さい</h6>
+		        <br><a href='{% url "login" %}' class='login nav-link btn btn-outline-primary'>ログイン</a></p>
+		    {% endif %}
 		</form><br>
 	</div>
 	<div class="col-md-8">
-		なにかいれよう
+		新しいアプリを挿入するスペース
 	</div>
 </div>
-	<div class="table-responsive">
-		<table class="table table-striped table-hover">
-			<thead class="thead-dark">
-			<tr>
-			<th>1</th><th>2</th><th>3</th>
-			</tr>
-			</thead>
-			<tbody>
-			{% for i in comments %}
-		        <tr>
-		        	<td>投稿者：{{i.author}}</td>
-		        	<!-- <td>題名：{{ i.mes}}　　</td> -->
-		        	<td>コメント：{{ i }}　　</td>
-		        	<td>更新：{{ i.created }}　</td>	
-	        	</tr>
-		    {% endfor %}
-			</tbody>
-	    </table>
+<h3>面談日が５日前までの案件が表示されます</h3>
+<div class="row">
+	<div class="col-md-10">
+		<hr class="hrs">
+		<form action="" method="get">
+        	<input name="query" value="{{ request.GET.query }}" type="text">
+        	<button type="submit" class='btn btn-outline-primary'>検索</button>
+        	{% csrf_token %}
+		</form>
+		<hr class="hrs">
+	    {% for x in comments %}
+		    <h6 class="btn-sticky">
+		    	{{ x.mes }}　
+		    	引率者：{{ x.author }}
+		    	面談日：{{ x.updated }}　　　　
+	    	</h6>
+	    	<a href='{% url "app:update2" x.pk %}' class='btn btn-outline-primary'>　内容確認　</a>
+	    {% endfor %}
+	    <br><br>
 	</div>
+</div>
 <br>
-
-<form action="" method="POST">
-	<p><td><a href="{% url 'app:update' category.pk %}" class='btn btn-outline-primary'>編集</a>　</td></p>
-	<p><td><a href="{% url 'app:delete' object.pk %}" class='btn btn-outline-primary'>削除</a>　</td></p>
-</form>
+{% if perms.foo %}
+	<p>すべての権限をもっているので社員の編集・削除も行えます</p>
+    {% if perms.foo.can_vote %}
+    <form action="" method="POST">
+		<p><td><a href="{% url 'app:update' category.pk %}" class='btn btn-outline-primary'>編集</a>　</td></p>
+		<p><td><a href="{% url 'app:delete' object.pk %}" class='btn btn-outline-primary'>削除</a>　</td></p>
+	</form>
+    {% endif %}
+    {% if perms.foo.can_drive %}
+        <p>↑権限をもっている時に編集・削除機能表示</p>
+    {% endif %}
+{% else %}
+    <p>権限をもってないのでこの社員の編集・削除はできません</p>
+{% endif %}
     <p><td><a href="{% url 'app:index' %}" class='btn btn-outline-primary'>戻る</a>　</td></p>
 <br>
 {% endblock %}

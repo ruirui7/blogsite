@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block content %}
+<p><h1>CSVダウンロード</h1></p>
+<br>
+<div class="row">
+	<div class="col-md-6">
+		<p><h6 class="btn-sticky">
+			先月分社員リストCSV出力
+		</h6></p>
+        <li class="nav-item">
+            <p><a class="btn btn-outline-primary" href="{% url 'app:export' %}">　CSVダウンロード　</a></p>
+        </li>
+    </div>
+    <div class="col-md-6">
+		<p><h6 class="btn-sticky">
+			先月分案件リストCSV出力
+		</h6></p>
+        <li class="nav-item">
+            <p><a class="btn btn-outline-primary" href="{% url 'app:export_come' %}">　CSVダウンロード　</a></p>
+        </li>
+    </div>
+</div>
+<br>
+{% endblock %}

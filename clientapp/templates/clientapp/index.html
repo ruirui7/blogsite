@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% load static %}
+<p><h1>顧客リスト</h1></p>
+<br><br>
+<hr style="border:0;border-top:thick dotted #808080;background-color:#000000;">
+<br>
+<form action="" method="get">
+    <input name="query" value="{{ request.GET.query }}" type="text">
+    <button type="submit" class='btn btn-outline-primary'>検索</button>
+    {% csrf_token %}
+</form>
+<hr style="border:0;border-top:thick dotted #808080;background-color:#000000;">
+{% for x in object_list %}
+    <p><h6 class="btn-sticky">
+        {{ x.name }}　
+    	会社名：【{{ x.org }}】<br>
+    	人数規模：【{{ x.scale }}】　
+    	案件数：【{{ x.proposals }}】
+    	案件傾向：【{{ x.mat_trend }}】
+    	案件総数：【{{ x.mat_total }}】
+    	優先度：【{{ x.priority }}】
+    	更新日時：【{{ x.updated_at }}】
+	</h6></p>
+    <p><a href='{% url "clientapp:client_detail" x.pk %}' class='btn btn-outline-primary'>　詳細　</a></p>
+{% endfor %}
+{% include "app/board.html" %}
+<br><br>
+{% if perms.foo %}
+    {% if perms.foo.can_vote %}
+        <p><a href='{% url "clientapp:client_create" %}' class='btn btn-outline-primary'>　顧客作成　</a></p>
+    {% endif %}
+{% else %}
+    <p>権限をもってないので社員作成はできません</p>
+{% endif %}
+<p><a href="{% url 'app:index' %}" class='btn btn-outline-primary'>戻る</a></p>
+{% endblock %}

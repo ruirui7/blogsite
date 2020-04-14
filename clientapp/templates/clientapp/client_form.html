@@ -1,13 +1,13 @@
 {% extends 'app/base.html' %}
 {% block content %}
-<h1>{{ object|yesno:'更新,作成' }}</h1>
+<h1>{{ object|yesno:'変更,顧客作成' }}</h1>
 <br>
-<body>カテゴリーフォーム
+<body>
 <form action="" method="POST">	
     {% csrf_token %}
 	{{ form.as_p }}<br><br>
-	<button type='submit' class='btn btn-outline-primary'>{{ object|yesno:'更新,作成' }}</button><br><br>
-</form><br>
+	<button type='submit' class='btn btn-outline-primary'>{{ object|yesno:'変更,顧客作成' }}</button><br><br>
 	<td><a href="{{request.META.HTTP_REFERER}}" class='btn btn-outline-primary'>戻る</a>　</td><br>
+</form><br>
 </body><br>
 {% endblock %}

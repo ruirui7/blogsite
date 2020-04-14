@@ -1,0 +1,18 @@
+{% extends 'app/base.html' %}
+{% block content %}
+<h1>{{ object|yesno:'更新,作成' }}</h1>
+<br>
+<body>案件フォーム
+	{% if user.is_authenticated %}
+		<form action="" method="POST">	
+		    {% csrf_token %}
+			{{ form.as_p }}<br><br>
+			<button type='submit' class='btn btn-outline-primary'>{{ object|yesno:'更新,作成' }}</button><br><br>
+		</form><br>
+			<td><a href="{{request.META.HTTP_REFERER}}" class='btn btn-outline-primary'>戻る</a>　</td><br>
+	{% else %}
+		<h2>ログインしてから</h2>
+		<br><a href='{% url "login" %}' class='login nav-link btn btn-outline-primary'>ログイン</a>
+	{% endif %}
+</body><br>
+{% endblock %}
