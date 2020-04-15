@@ -1,0 +1,29 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<p><h1>新規作成</h1></p><br>
+<section class="common-form">
+	<p>
+	<form method="post">
+	<table>
+		<tr>
+		{% csrf_token %}
+		<p><label for="your_name">ユーザー名:</label><input id="your_name" type="text" name="your_name" value="{{ form.username }}">
+			この項目は必須です。半角アルファベット、半角数字、@/./+/-/_で150文字以下にしてください。</p>
+		</tr>
+		<tr>
+		<p>メールアドレス:{{ form.email }}</p>
+		</tr>
+		<tr>
+		<p>パスワード選択:{{ form.password1 }}<ul><li>あなたの他の個人情報と似ているパスワードにはできません。</li><li>パスワードは最低８文字以上必要です。</li><li>よく使われるパスワードにはできません。</li><li>数字だけのパスワードにはできません。</li></ul></p>
+		</tr>
+		<tr>		
+		<p>:パスワード確認:{{ form.password2 }}確認のためのパスワードを入力してください。</p>
+		</tr>
+	</table>
+		<button type="submit" class="btn btn-outline-primary">新規作成</button>
+	</form>
+<br><br>
+</section>
+
+{% endblock %}

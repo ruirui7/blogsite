@@ -1,0 +1,18 @@
+{% extends 'app/base.html' %}
+{% block content %}
+<p><h1>マイページ</h1></p><br>
+<div class="row">
+	<div class="col-md-12">
+		<div class="box11">
+		<p>
+		<h4>アカウント名：{{user.username}}</h4><br>
+		<h4>admin権限：{{user.is_staff}}</h4>
+		<h4>email：{{user.email}}</h4>
+		<h4>最終ログイン日時：{{user.last_login}}</h4>
+		<h4>作成日時：{{user.date_joined}}</h4>
+		</p>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

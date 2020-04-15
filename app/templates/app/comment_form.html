@@ -2,7 +2,7 @@
 {% block content %}
 <h1>{{ object|yesno:'更新,作成' }}</h1>
 <br>
-<body>案件フォーム
+<h1>案件フォーム</h1><br>
 	{% if user.is_authenticated %}
 		<form action="" method="POST">	
 		    {% csrf_token %}

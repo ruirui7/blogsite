@@ -1,34 +1,40 @@
 {% extends 'layout.html' %}
 {% block content %}
 {% load static %}
-<p><h1>社員情報</h1></p>
-<br><br>
-<hr style="border:0;border-top:thick dotted #808080;background-color:#000000;">
-<br>
-<form action="" method="get">
-	<input name="query" value="{{ request.GET.query }}" type="text">
-	<button type="submit" class='btn btn-outline-primary'>検索</button>
-	{% csrf_token %}
-</form>
-<hr style="border:0;border-top:thick dotted #808080;background-color:#000000;">
-{% for i in object_list %}
-    <p><h6 class="btn-sticky">
-        {{ i.title }}　
-    	会社名：【{{ i.genre }}】
-    	担当者：{{ i.author }}　
-    	得意分野：【{{ i.message }}】<br>
-    	更新日時：【{{ i.updated_at }}】
-	</h6></p>
-	<p><a href='{% url "app:detail" i.pk %}' class='btn btn-outline-primary'>　詳細　</a></p>
-{% endfor %}
-<br><br>
-{% include "app/board.html" %}
-{% if perms.foo %}
-    {% if perms.foo.can_vote %}
-		<p><a href='{% url "app:create" %}' class='btn btn-outline-primary'>　新規社員作成　</a></p>
-    {% endif %}
+{% if user.is_authenticated %}
+	<p><h1>社員情報</h1></p>
+	<br><br>
+	<hr style="border:0;border-top:thick dotted #808080;background-color:#000000;">
+	<br>
+	<form action="" method="get">
+		<input name="query" value="{{ request.GET.query }}" type="text">
+		<button type="submit" class='btn btn-outline-primary'>検索</button>
+		{% csrf_token %}
+	</form>
+	<hr style="border:0;border-top:thick dotted #808080;background-color:#000000;">
+	{% for i in object_list %}
+	    <p><h6 class="btn-sticky">
+	        {{ i.title }}　
+	    	会社名：【{{ i.genre }}】
+	    	担当者：{{ i.author }}　
+	    	得意分野：【{{ i.message }}】<br>
+	    	更新日時：【{{ i.updated_at }}】
+		</h6></p>
+		<p><a href='{% url "app:detail" i.pk %}' class='btn btn-outline-primary'>　詳細　</a></p>
+	{% endfor %}
+	<br><br>
+	{% include "app/board.html" %}
+	{% if perms.foo %}
+	    {% if perms.foo.can_vote %}
+			<p><a href='{% url "app:create" %}' class='btn btn-outline-primary'>　新規社員作成　</a></p>
+	    {% endif %}
+	{% else %}
+	    <p>権限をもってないので社員作成はできません</p>
+	{% endif %}
+	<br>
 {% else %}
-    <p>権限をもってないので社員作成はできません</p>
+	<p><h1>ログインしてください</h1></p><br><br>
+    <p><br><a href='{% url "login" %}' class='btn btn-outline-primary'>ログイン</a></p>
+    <br><br><br>
 {% endif %}
-<br>
 {% endblock %}

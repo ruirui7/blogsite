@@ -26,6 +26,7 @@ from datetime import date
 
 from django.db.models import Q
 
+
 #-----------------------------------------
 # ページネーション機能
 #-----------------------------------------
@@ -123,7 +124,7 @@ class DetailView(ModelFormMixin, generic.DetailView):
 
 class CreateView(LoginRequiredMixin, generic.edit.CreateView):
 	model = Category
-	fields = ['title', 'genre', 'message','author']
+	fields = ['title', 'genre', 'message','memo' ,'author']
 
 	def form_valid(self, form):
 		form.instance.created_by = self.request.user
@@ -131,7 +132,7 @@ class CreateView(LoginRequiredMixin, generic.edit.CreateView):
 
 class UpdateView(LoginRequiredMixin, generic.edit.UpdateView):
 	model = Category
-	fields = ['title', 'genre', 'message', 'author']#'updated_at'#'__all__'
+	fields = ['title', 'genre', 'message', 'memo' ,'author']#'updated_at'#'__all__'
 
 class DeleteView(LoginRequiredMixin, generic.edit.DeleteView):
 	model = Category
@@ -220,7 +221,7 @@ def comment_export(request):
     return response
 
 #-----------------------------------------
-# パスワード変更
+# パスワード変更項目
 #-----------------------------------------
 
 class PasswordChange(PasswordChangeView):
@@ -233,3 +234,11 @@ class PasswordChange(PasswordChangeView):
 class PasswordChangeDone(PasswordChangeDoneView):
     """パスワード変更しました"""
     template_name = 'app/password_change_done.html'
+
+#-----------------------------------------
+# マイページ項目
+#-----------------------------------------
+
+class MypageView(generic.ListView):
+    template_name = 'app/mypage.html'
+    model = User

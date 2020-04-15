@@ -144,13 +144,6 @@ background-color: #ffd78c;
 }
 
 
-.jumbotron {
-  background-image: url("kami.jpg");
-  background-size: cover;
-  width: 60vw;
-  height: 600px;
-  background-position: center 65%;
-}
 
 }
 .loop_wrap {

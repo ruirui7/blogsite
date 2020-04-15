@@ -41,15 +41,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap_datepicker_plus',
 
-    'sslserver'#HTTPS
+    # 'sslserver'#HTTPS
 ]
+#ユーザーカスタム
+# AUTH_USER_MODEL = 'accounts.User'
+
+#pip install django-bootstrap-datepicker-plus
+#datepickerを使用できるようにする。
 
 #pip install django-sslserver　HTTPS有効化
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = False
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_SSL_REDIRECT = False
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
 
 #コマンド↓
 # openssl genrsa -out foobar.key 2048

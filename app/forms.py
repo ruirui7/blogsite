@@ -4,7 +4,7 @@ from django.utils import timezone
 from django.contrib.admin.widgets import AdminDateWidget
 
 from django.contrib.auth.forms import (
-    AuthenticationForm, UserCreationForm, PasswordChangeForm
+    AuthenticationForm, PasswordChangeForm
 )
 from django.contrib.auth import get_user_model
 
@@ -28,3 +28,35 @@ class MyPasswordChangeForm(PasswordChangeForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
+
+
+
+# class SignUpForm(UserCreationForm):
+
+#     class Meta:
+#         model = User
+#         fields = ('username', 'email', 'password1', 'password2')
+
+
+# class SignUpForm(UserCreationForm):
+#     last_name = forms.CharField(
+#         max_length=30,
+#         required=False,
+#         help_text='オプション',
+#         label='苗字'
+#     )
+#     first_name = forms.CharField(
+#         max_length=30,
+#         required=False,
+#         help_text='オプション',
+#         label='名前'
+#     )
+#     email = forms.EmailField(
+#         max_length=254,
+#         help_text='必須 有効なメールアドレスを入力してください。',
+#         label='Eメールアドレス'
+#     )
+
+#     class Meta:
+#         model = User
+#         fields = ('username', 'last_name', 'first_name',  'email', 'password1', 'password2', )

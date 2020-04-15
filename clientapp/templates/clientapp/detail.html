@@ -7,12 +7,13 @@
 {% endfor %}
 <br>
 <div class="row">
-	<div class="col-md-10">
+	<div class="col-md-12">
 	    {% for i in client %}
 	    	<div class="box11">
 		    <p>	
 		    <h4>顧客名：{{ i.name }}</h4><br>
 		    <h4>会社名：{{ i.org }}</h4>
+		    <h4>担当者：{{ i.author }}</h4>
 	    	<h4>人数規模：{{ i.scale }}</h4>
 	    	<h4>案件数：{{ i.proposals }}</h4>
 	    	<h4>案件傾向：{{ i.mat_trend }}</h4>

@@ -1,9 +1,23 @@
 {% extends 'app/base.html' %}
 {% block content %}
 <h1>社員名：【{{ category }}】</h1><br>
-<h5 class="btn-sticky">案件を作成する　　　</h5>
 <div class="row">
+	<div class="col-md-7">
+		<div class="box11">
+		    <p>	
+		    <h4>名前：{{ category.title }}</h4><br>
+		    <h4>所属：{{ category.genre }}</h4>
+			<h4>得意分野：{{ category.message }}</h4>
+			<h4>担当者：{{ category.author }}</h4>
+			<h4>社員メモ：{{ category.memo }}</h4>
+		    <h4>更新日：{{ category.updated_at }}</h4>
+		    </p>
+	    </div>
+	</div>
+	<div class="col-md-1">
+	</div>
 	<div class="col-md-4">
+		<p><h5 class="btn-sticky">この社員の案件を作成する　　　</h5></p>
 		<form  method="POST">
 			{{ form }}
 			{% csrf_token %}
@@ -14,9 +28,6 @@
 		        <br><a href='{% url "login" %}' class='login nav-link btn btn-outline-primary'>ログイン</a></p>
 		    {% endif %}
 		</form><br>
-	</div>
-	<div class="col-md-8">
-		新しいアプリを挿入するスペース
 	</div>
 </div>
 <h3>面談日が５日前までの案件が表示されます</h3>
@@ -55,6 +66,6 @@
 {% else %}
     <p>権限をもってないのでこの社員の編集・削除はできません</p>
 {% endif %}
-    <p><td><a href="{% url 'app:index' %}" class='btn btn-outline-primary'>戻る</a>　</td></p>
+    <p><a href="{% url 'app:index' %}" class='btn btn-outline-primary'>戻る</a></p>
 <br>
 {% endblock %}
