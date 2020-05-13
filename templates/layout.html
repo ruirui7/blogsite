@@ -7,20 +7,32 @@
 	<meta charset="utf-8">
 	<!--bootstrap-->
 	<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	<link href="/static/bootstrap_datepicker_plus/css/datepicker-widget.css" type="text/css" media="all" rel="stylesheet">
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-	<script type="text/javascript" src="/static/bootstrap_datepicker_plus/js/datepicker-widget.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 	<!--jqueryui-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
 	<main class="main"></main>
+	
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<div class="container">
 </head>
 <body>
-	<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
-		<a class="navbar-brand" href='{% url "app:index" %}'>営業ツール　</a>
-		<ul class='navbar-nav'>
+	<nav class="navbar  navbar-dark bg-dark fixed-top">
+		<a class="navbar-brand" href='{% url "app:index" %}'>営業ツール(lay)　</a>
+		<!-- <ul class='navbar-nav'> -->
+  	<button class="navbar-toggler" type="button"
+      data-toggle="collapse"
+      data-target="#navmenu1"
+      aria-controls="navmenu1"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  	</button>
+	<div class="collapse navbar-collapse" id="navmenu1">
+		<div class="navbar-nav">
 			{% if request.user.is_authenticated %}
 				<li class='nav-item'>
 					<span class='navbar-text'>{{ user }} - </span>
@@ -33,6 +45,12 @@
 		        </li>
 		        <li class='nav-item'>
 		          <a href='{%  url "clientapp:index" %}' class='nav-link'>顧客リスト　</a>
+		        </li>
+				<li class='nav-item'>
+				  <a href='{%  url "clientapp:file_create" %}' class='nav-link'>画像アップローダー　</a>
+				</li>
+		        <li class='nav-item'>
+		          <a href='{%  url "clientapp:file_list" %}' class='nav-link'>画像一覧　</a>
 		        </li>
 		        <li>
 		          <a href='{% url "app:CSV"%}' class='nav-item nav-link'>CSVダウンロード　</a>
@@ -53,9 +71,10 @@
 					<a href='{% url "login" %}' class='login nav-link'>ログイン　</a>
 				</li>
 			{% endif %}
-		</ul>
+		<!-- </ul> -->
+		</div>
+	</div>
 	</nav>
-	<div class="container">
 		{% block content %}
 
 		{% endblock %}

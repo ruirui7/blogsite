@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from .models import Client
-from .forms import ClientForm
+from .models import Client,Book
+from .forms import ClientForm,BookForm
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import redirect, render
@@ -14,9 +14,10 @@ from dateutil.relativedelta import relativedelta
 from datetime import date
 
 from django.db.models import Q
+from django.conf import settings
 
 #-----------------------------------------
-# カテゴリー項目
+# 顧客リスト項目
 #-----------------------------------------
 
 class ClientIndexView(generic.ListView):
@@ -65,4 +66,39 @@ class ClientUpdateView(LoginRequiredMixin, generic.edit.UpdateView):
 class ClientDeleteView(LoginRequiredMixin, generic.edit.DeleteView):
 	template_name = 'clientapp/delete.html'
 	model = Client
-	success_url = reverse_lazy('app:index')
+	success_url = reverse_lazy('clientapp:index')
+
+#-----------------------------------------
+# 写真アップロード項目
+#-----------------------------------------
+
+class FiileListView(generic.ListView):
+	"""ファイル一覧ビュー"""
+	template_name = 'clientapp/file_list.html'
+	model = Book
+	# form_class = BookForm
+
+class FiileCreateView(generic.CreateView):
+    """ファイルモデルのクリエイトビュー"""
+    model = Book
+    fields = ["image"]
+    template_name = 'clientapp/file_form.html'
+    success_url = reverse_lazy('clientapp:file_list')
+
+class FiileUpdateView(generic.UpdateView):
+	"""ファイルモデルのアップデートビュー"""
+	template_name = 'clientapp/file_form.html'
+	model = Book
+	fields = ["image"]
+	def my_view(request):
+		if foo:
+			return HttpResponseNotFound('<h1>Page not found</h1>')
+		else:
+			return HttpResponse('<h1>Page was found</h1>')
+
+class FiileDeleteView(generic.DeleteView):
+	"""ファイルモデルのデリートビュー"""
+	template_name = 'clientapp/file_delete.html'
+	model = Book
+	fields = ["__all__"]
+	success_url = reverse_lazy('clientapp:file_list')

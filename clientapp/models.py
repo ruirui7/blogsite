@@ -23,3 +23,20 @@ class Client(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('clientapp:client_detail', kwargs={'pk': self.pk})
+
+class Book(models.Model):
+	# author = models.ForeignKey('auth.User', on_delete=models.CASCADE)#verbose_name="名前"
+    #画像のパスを保存するカラムっぽいupload_toはアップロード先
+	image = models.ImageField(upload_to='images')
+
+	# def __str__(self):
+	# 	"""ファイルのURLを返す"""
+	# 	return self.file.url
+
+	def get_absolute_url(self):
+		return reverse('clientapp:file_list')
+
+
+    # title = models.CharField(max_length=32)
+    # link = models.CharField(max_length=200)
+	updated_at = models.DateTimeField(auto_now=True)

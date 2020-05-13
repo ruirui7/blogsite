@@ -25,7 +25,7 @@ SECRET_KEY = '^2@8345x-4%w_9eii0vhjw$xvysoy1pcm7k^*sa4^cs63c1n#9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap_datepicker_plus',
+    'django_cleanup',
 
     # 'sslserver'#HTTPS
 ]
@@ -141,9 +142,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+
+
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+
+
+#Djangoで画像ファイルを扱うためにはPillowという画像処理ライブラリが必要
+#pip install pillow
+#画像データ処理
+
+MEDIA_URL = '/media/'
+# MEDIA_URL = '/pics/'仮想のディレクトリへ保管
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_ROOT =　BASE_DIRでもOKな事象あり、現在エラー中
 
 #pip install django-debug-toolbar　デバッガ―ツール
 

@@ -13,7 +13,7 @@ from django.contrib.auth.views import (
 )
 from .forms import MyPasswordChangeForm
 
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.http import HttpResponse
 from django.views import generic
@@ -242,3 +242,5 @@ class PasswordChangeDone(PasswordChangeDoneView):
 class MypageView(generic.ListView):
     template_name = 'app/mypage.html'
     model = User
+    #ユーザーはそのまま使える気がする。{{user.username}}
+    #modelを別のクラスにして取得してUSERクラスはそのまま引っ張ればいけそう。

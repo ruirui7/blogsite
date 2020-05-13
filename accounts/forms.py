@@ -19,8 +19,6 @@ class SignUpForm(UserCreationForm):
 	# 性別 = forms.ChoiceField(choices=[
  #        ('item1', 'man'), ('item2', 'woman')
  #    ])
-
-
 	class Meta:
 		model = User
 		fields = ('username', 'email', 'password1', 'password2')

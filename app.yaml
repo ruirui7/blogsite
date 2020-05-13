@@ -1,0 +1,7 @@
+runtime: python37
+entrypoint: gunicorn -b :$PORT main:blog.wisgi.application
+
+handlers:
+  - url: .*
+   script: auto
+# {\rtf1}

@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% load static %}
+<p><h1>画像アップローダー</h1></p><br>
+<form action="" method="POST" enctype="multipart/form-data">
+    <p><h5>{{ form.image }}
+    {% csrf_token %}
+     <button type="submit">送信</button></h5></p>
+</form><br>
+<p><a href='{% url "clientapp:file_list" %}' class='btn btn-outline-primary'>画像閲覧</a></p>
+<br><br>
+{% endblock %}
